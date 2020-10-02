@@ -1,4 +1,3 @@
-/*
 import React from "react";
 import {Gitgraph} from "@gitgraph/react";
 //import { Gitgraph, Branch } from "@gitgraph/react";
@@ -6,13 +5,16 @@ import {Gitgraph} from "@gitgraph/react";
 
 let master;
 
-class Graph extends React.Component {
+
+class Graph extends React.Component{
 
     constructor(props) {
         super(props);
         this.state = {
+
             branches: [],
-            commitMessage:''
+            commitMessage:'',
+            commitMessage2:''
         }
     }
 
@@ -27,11 +29,26 @@ class Graph extends React.Component {
             commitMessage: event.target.value
         });
     }
+    changeHandler2 = (event) => {
+        this.setState({
+            commitMessage: event.target.value
+        });
+    }
 
     submitHandler = (event) => {
         event.preventDefault();
         this.addCommit();
     }
+
+    createNewBranch = () => {
+
+            let branch1=master.branch(this.state.commitMessage)
+            branch1.commit(this.state.commitMessage)
+
+
+        }
+
+
 
     render() {
         return (
@@ -39,6 +56,9 @@ class Graph extends React.Component {
                 <form onSubmit={this.submitHandler}>
                     <input type="text" value={this.state.commitMessage} onChange={this.changeHandler}/>
                     <input type="submit" value="Commit on Life"/>
+                    {//<input type="text" value={this.state.commitMessage2} onChange={this.changeHandler2}/>
+                    }
+                    <input type="button" onClick={this.createNewBranch} value="create new branch"/>
                 </form>
                 <button >Clear</button>
                 <Gitgraph>
@@ -51,5 +71,3 @@ class Graph extends React.Component {
     }
 }
 export default Graph
-
- */
