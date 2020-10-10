@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css'
-import Graph from "./newgraph";
-//import NewGraph from "./newgraph"
+import Graph from "./graph"
+
+
 
 function App() {
     return (<div>
@@ -11,7 +12,6 @@ function App() {
 
             <div>
                 <Graph />
-
             </div>
         </div>
     );
