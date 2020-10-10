@@ -1,9 +1,5 @@
-import * as React from "react";
+import React from "react";
 import {Gitgraph} from "@gitgraph/react";
-//import { Gitgraph, Branch } from "@gitgraph/react";
-const gitgraph = require("@gitgraph/react")
-
-let master;
 
 class Graph extends React.Component {
 
@@ -11,42 +7,76 @@ class Graph extends React.Component {
         super(props);
         this.state = {
             branches: [],
-            commitMessage:''
-        }
+            branchName:''
+        };
     }
 
+    addCommit = (branch) => {
 
-    addCommit = () => {
-        // this.state.gitgraph.commit(this.state.commitMessage);
-        master.commit(this.state.commitMessage)
-    }
+        branch.commit(this.state[`commitMessage${branch.name}`]);
 
-    changeHandler = (event) => {
+    };
+
+    addBranch = () => {
+
+        this.setState(() => ({
+            branches: [...this.state.branches,this.state.gitgraph.branch(this.state.branchName)]
+        }));
+    };
+
+    handleChange = (name) => (e) => {
+        this.setState({[name]: e.currentTarget.value});
+    };
+
+    clear = () => {
+        this.state.gitgraph.clear();
         this.setState({
-            commitMessage: event.target.value
+            branches: [],
         });
-    }
+    };
 
-    submitHandler = (event) => {
-        event.preventDefault();
-        this.addCommit();
-    }
 
     render() {
+        const branches = this.state.branches
         return (
             <div>
-                <form onSubmit={this.submitHandler}>
-                    <input type="text" value={this.state.commitMessage} onChange={this.changeHandler}/>
-                    <input type="submit" value="Commit on Life"/>
+                <form
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        this.addBranch();
+                    }}>
+
+                    <input type="text" onChange={this.handleChange("branchName")}/>
+                    <button>Add a branch</button>
+
                 </form>
-                <button >Clear</button>
-                <Gitgraph>
-                    {(gitgraph)=>{
-                        master = gitgraph.branch("master")
-                    }}
-                </Gitgraph>
+
+
+                {branches.map((branch) => (
+                    <form
+                        key={branch.name}
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            this.addCommit(branch);
+                        }}
+                    >
+
+                        <input
+                            type="text"
+                            value={this.state[`commitMessage${branch.name}`]}
+                            onChange={this.handleChange(`commitMessage${branch.name}`)}
+                        />
+                        <button>Commit on {branch.name}</button>
+
+                    </form>
+                ))}
+
+                <button onClick={this.clear}>clear</button>
+                <Gitgraph children={(gitgraph) => this.setState({gitgraph})}/>
             </div>
         );
     }
 }
+
+
 export default Graph
