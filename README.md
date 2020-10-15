@@ -18,7 +18,7 @@ npx create-react-app my-app
 cd my-app
 npm start
 ```
-## Intructions
+## Instructions
 - "Add a branch" -> To create a branch with a name of your choice
 - "Commit on" -> To commit on a specific branch
 - "CLear" -> To remove all the branchs and the commits
