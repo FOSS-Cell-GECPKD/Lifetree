@@ -61,7 +61,6 @@ class Graph extends React.Component {
 
 
   render() {
-      const template={}
     const branches = this.state.branches;
     return (
       <React.Fragment>
