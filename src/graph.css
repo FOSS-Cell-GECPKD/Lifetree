@@ -1,0 +1,46 @@
+input {
+    border-width:0px;
+	border:none;
+	outline:none;
+}
+
+button, select {
+	background-color: #252525;
+	color: #f2f2f2;
+	padding-top:10px;
+	padding-left:10px;
+	padding-bottom: 10px;
+	padding-right: 10px;		
+}
+
+.branchNameInput {
+	background-color: #f2f2f2;
+	color: #252525;
+	padding-top:10px;
+	padding-left:10px;
+	padding-bottom: 10px;
+	padding-right: 10px;
+}
+
+.commitInput {
+	background-color: #f2f2f2;
+	color: #252525;
+	padding-top:10px;
+	padding-left:10px;
+	padding-bottom: 10px;
+	padding-right: 10px;
+}
+
+.mergeButtons {
+	margin-right: 1000px;
+}
+
+.graph {
+	position: absolute;
+	left: 50%;
+	top: 20%;
+}
+
+.noNewLine {
+	display: inline;
+}
