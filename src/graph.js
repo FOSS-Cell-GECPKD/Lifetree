@@ -31,11 +31,10 @@ class Graph extends React.Component {
         ...this.state.branches,
         this.state.gitgraph.branch({name:this.state.branchName,style: {
                 label: {
-                    bgColor: '#F2F2F2',
+                    bgColor: '#FFFFFF',
                     color: 'black',
                     strokeColor: '#252525',
-                    borderRadius: 10,
-                    font: '12pt serif',
+                    borderRadius: 0,
                 },
             },}),
       ],
@@ -59,57 +58,51 @@ class Graph extends React.Component {
     const branches = this.state.branches;
 
     const mergeBranch = (fromSelect, toSelect) => {
-	  	console.log(branches[fromSelect]);
 	  	branches[fromSelect].merge(branches[toSelect]);
+  	};
+
+  	const commitToBranch = (branch, value) => {
+	  	branches[branch].commit(value);
   	};
 
     return (
       <React.Fragment>
+
         <form
           onSubmit={(e) => {
             e.preventDefault();
             this.addBranch();
           }}
         >
-          <input className="branchNameInput" type="text" placeholder="Branch name" onChange={this.handleChange("branchName")}/>
-          <button className="addBranchButton">Add a branch</button>
+          <input id="branchNameInput" className="branchNameInput" type="text" placeholder="Branch name" onChange={this.handleChange("branchName")}/>
+          <button id="branchNameButton" className="addBranchButton">Add a branch</button>
         </form>
-        {
-          //To render "Commit On specific-branch" button from branches array
-          branches.map((branch) => (
-            <form
-              key={branch.name}
-              onSubmit={(e) => {
-                e.preventDefault();
-                this.addCommit(branch);
-              }}
-            >
-              <input
-                type="text"
-                placeholder="What to commit" 
-                className="commitInput"
-                value={this.state[`commitMessage${branch.name}`] ||""}
-                onChange={this.handleChange(`commitMessage${branch.name}`)}
-              />
-              <button className="commitToButton">Commit on {branch.name}</button>
-            </form>
-          ))
-        }
 
-        <button className="clearButton" onClick={this.clear}>clear</button>
+	    <input id="commitBranchInput"
+              type="text" 
+              placeholder="What to Commit" 
+              className="commitInput"
+            />
+            <button id="commitBranchButton" onClick={() => commitToBranch(document.getElementById('commitBranchSelect').value, document.getElementById('commitBranchInput').value)}>Commit</button>
+            <select id="commitBranchSelect" name="Branch">
+                {branches.map((dropDownCommitBranchName, idy) => <option key={idy} value={`${idy}`}>{dropDownCommitBranchName.name}</option>)}
+            </select>
+
+	    <br></br>
+
         <div className="graph">
         <>
         <Gitgraph
           ref={this.componentRef}
           options={{
             orientation: "vertical",
-            author: " ",
+            author: "",
             template: templateExtend(TemplateName.Metro, {
                 commit: {
                     message: {
                         displayAuthor: false,
                         displayBranch: true,
-                        displayHash: true,
+                        displayHash: false,
                     },
 
                 }
@@ -120,45 +113,27 @@ class Graph extends React.Component {
         </>
         </div>
 
-        <button className="pngExportButton" onClick={() => exportComponentAsPNG(this.componentRef)}>
-          Export As PNG
-        </button>
 
-        {/*<div className="mergeButtons">{
-            //To render merge buttons
-            branches.map((to) =>
-              branches
-                .filter((from) => to.name !== from.name)
-                .map((from) => (
-                  <button
-                    key={`${to.name}->${from.name}`}
-                    onClick={() => from.merge(to)}
-                  >
-                    Merge {to.name} into {from.name}
-                  </button>
-                ))
-            )
-          }
-        </div>
-        */}
 
-        <br></br>
+        <h4 id="mergeFromH4" className="noNewLine">&emsp;Merge From : &emsp;</h4>
+      
+            <select id="fromBranch" name="Branch">
+                {branches.map((dropDownFromBranchName, idx) => <option key={idx} value={`${idx}`}>{dropDownFromBranchName.name}</option>)}
+            </select>
+      
+            <h4 id="mergeToH4" className="noNewLine">&emsp;To : &emsp;</h4>
+      
+            <select id="toBranch" name="Branch">
+                {branches.map((dropDownToBranchName, idx) => <option key={idx} value={`${idx}`}>{dropDownToBranchName.name}</option>)}
+            </select>
+      
+            <button id="mergeButton" onClick={() => mergeBranch(document.getElementById('toBranch').value, document.getElementById('fromBranch').value)}>Merge</button>
+    
+              <button id="clearButton" className="clearButton" onClick={this.clear}>clear</button>
 
-	    <h4 className="noNewLine">&emsp;Merge From : &emsp;</h4>
-
-	    <select id="fromBranch" name="Branch">
-	        {branches.map((dropDownFromBranchName, idx) => <option key={idx} value={`${idx}`}>{dropDownFromBranchName.name}</option>)}
-	    </select>
-
-	    <h4 className="noNewLine">&emsp;To : &emsp;</h4>
-
-	    <select id="toBranch" name="Branch">
-	        {branches.map((dropDownToBranchName, idx) => <option key={idx} value={`${idx}`}>{dropDownToBranchName.name}</option>)}
-	    </select>
-
-	    <br></br>
-
-	    <button onClick={() => mergeBranch(document.getElementById('toBranch').value, document.getElementById('fromBranch').value)}>Merge</button>
+              <button id="pngExportButton" className="pngExportButton" onClick={() => exportComponentAsPNG(this.componentRef)}>
+                Export As PNG
+              </button>
 
       </React.Fragment>
     );
