@@ -1,27 +1,46 @@
-input {
-    border-width:0px;
-	border:none;
-	outline:none;
-}
-
-button, select, input {
-	background-color: #252525;
+button {
+	background-color: #1A73E8;
 	color: #f2f2f2;
 	padding-top:10px;
 	padding-left:10px;
 	padding-bottom: 10px;
 	padding-right: 10px;
   	transition: 0.3s;
-  	border-radius: 5px;
+	border-radius: 5px;
+	border: none;
 }
 
-button:hover, select:hover {
-	background-color: #353535;
+button:hover {
+	background-color: #1890FF;
 	color: #f2f2f2;
 	padding-top:10px;
 	padding-left:10px;
 	padding-bottom: 10px;
 	padding-right: 10px;		
+}
+
+select {
+	background-color: #FFFFFF;
+	color: #000000;
+	border: 1px solid #1A73E8;
+	padding-top:10px;
+	padding-left:10px;
+	padding-bottom: 10px;
+	padding-right: 10px;
+  	transition: 0.3s;
+	border-radius: 5px;
+}
+
+input[type="text"], textarea {
+	background-color: #ffffff;
+	border: 2px solid #D9D9D9;
+	border-radius: 5px;
+	outline:none;
+	transition-duration: 0.5s;
+}
+
+input[type="text"]:hover {
+	border: 2px solid #40A9FF;
 }
 
 .branchNameInput {
@@ -52,10 +71,6 @@ button:hover, select:hover {
 	top: 20%;
 }
 
-.noNewLine {
-	display: inline;
-}
-
 #controlBox {
 	border-style: solid;
 	border-color: #252525;
@@ -70,52 +85,42 @@ button:hover, select:hover {
 
 #mergeButton {
 	position: absolute;
-	top: 375px;
-	left: 255px;
-	width: 140px;
+	top: 290px;
+	left: 5px;
+	width: 390px;
 	height: 50px;
 }
 
 #toBranch {
 	position: absolute;
-	top: 325px;
-	left: 255px;
-	width: 140px;
+	top: 240px;
+	left: 200px;
+	width: 195px;
 	height: 50px;
-}
-
-#mergeToH4 {
-	position: absolute;
-	top: 315px;
 }
 
 #fromBranch {
 	position: absolute;
-	top: 275px;
-	left: 255px;
-	width: 140px;
+	top: 240px;
+	left: 5px;
+	width: 195px;
 	height: 50px;
-}
-
-#mergeFromH4 {
-	position: absolute;
-	top: 265px;
 }
 
 #commitBranchSelect {
 	position: absolute;
-	left: 5px;
-	top: 225px;
-	width: 250px;
+	left: 200px;
+	top: 175px;
+	width: 97.5px;
 	height: 50px;
 }
 
 #commitBranchButton {
 	position: absolute;
-	left: 244px;
-	top: 225px;
+	left: 297.5px;
+	top: 175px;
 	height: 50px;
-	width: 150px;
+	width: 97.5px;
 }
 
 #commitBranchInput {
@@ -123,7 +128,7 @@ button:hover, select:hover {
 	left: 6px;
 	top: 175px;
 	height: 50px;
-	width: 390px;
+	width: 195px;
 }
 
 #branchNameButton {
@@ -144,16 +149,16 @@ button:hover, select:hover {
 
 #clearButton {
 	position: absolute;
-	top: 425px;
+	top: 355px;
 	left: 5px;
-	width: 190px;
+	width: 193px;
 	height: 50px;
 }
 
 #pngExportButton {
 	position: absolute;
-	top: 425px;
-	left: 190px;
-	width: 205px;
+	top: 355px;
+	left: 202px;
+	width: 193px;
 	height: 50px;
 }
