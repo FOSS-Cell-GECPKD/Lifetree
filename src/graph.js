@@ -33,7 +33,7 @@ addBranch = () => {
           bgColor: '#FFFFFF',
           color: 'black',
           strokeColor: '#252525',
-          borderRadius: 0,
+          borderRadius: '10px',
         },
       },}),
     ],
@@ -56,11 +56,20 @@ clear = () => {
 render() {
   const branches = this.state.branches;
   const mergeBranch = (fromSelect, toSelect) => {
-		branches[fromSelect].merge(branches[toSelect]);
+    if(fromSelect && toSelect){
+      branches[fromSelect].merge(branches[toSelect]);
+    }
   };
 
   const commitToBranch = (branch, value) => {
-  	branches[branch].commit(value);
+    if(branch){
+      branches[branch].commit({
+        subject: value,
+        style: {
+          // Specific style for this commit
+        },
+      });
+    }
  	};
 
   return (

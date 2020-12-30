@@ -71,18 +71,6 @@ input[type="text"]:hover {
 	top: 20%;
 }
 
-#controlBox {
-	border-style: solid;
-	border-color: #252525;
-	border-width: 6px;
-	border-radius: 10px;
-	position: absolute;
-	top: 120px;
-	width: 400px;
-	height: 360px;
-	background-color: #f2f2f2;
-}
-
 #mergeButton {
 	position: absolute;
 	top: 290px;
