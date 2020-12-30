@@ -3,7 +3,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/FOSS-Cell-GECPKD/Lifetree?style=for-the-badge)](https://github.com/FOSS-Cell-GECPKD/Lifetree/issues)
 [![Join the chat at https://gitter.im/FOSS-Cell-GECPKD/Lifetree](https://img.shields.io/badge/chat-on%20gitter-blue?style=for-the-badge)](https://gitter.im/FOSS-Cell-GECPKD/Lifetree?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ## About
-The project lets you create a beautiful visualisation of a person's life as a tree allowing the users to create new branches, merge branches, commit, etc.
+Wrapper for GitGraph.js.
 ## Setup
 #### Clone this repo!
 First things first. Make a local clone of this repo so you can work on it from your own computer.
