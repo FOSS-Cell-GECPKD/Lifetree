@@ -1,13 +1,20 @@
+@font-face {
+  font-family: 'Lato';
+  src: local('Lato'), url(./Lato/Lato-Regular.ttf) format('truetype');
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
+    font-family: Lato;
+    background-color: #fafafa;
+    color: #252525;
 }
 
 .header {
-
     padding: 20px;
     text-align: center;
 }
